@@ -3,12 +3,14 @@ package com.example.todoapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        String message = item.getTitle() + "が押されました";
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        return true;
+        switch (item.getItemId()) {
+            case R.id.add_task:
+                intent = new Intent(MainActivity.this, AddTaskActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
